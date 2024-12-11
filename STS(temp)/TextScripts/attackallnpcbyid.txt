@@ -1,0 +1,8 @@
+[settings]
+setvarbygetinput(#id#,Whatnpc)
+goto([main])
+
+[main]
+attackallnpcbyid(#id#)
+wait(500)
+goto([main])

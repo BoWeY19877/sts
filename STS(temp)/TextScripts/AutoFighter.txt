@@ -1,0 +1,29 @@
+[settings]
+setvarbygetinput(#npcid#,What Is the NpcId?)
+setvarbygetinput(#npcid2#,npcid2)
+setvarbygetinput(#fmode#,What Fight mode to use?)
+setvarbygetinput(#foodid#,What is the id of the food you wish to use?)
+setvarbygetinput(#healat#,What Hp would you like to eat at?)
+setvar(#x#,$xcoord$)
+setvar(#y#,$ycoord$)
+goto([main])
+
+[main]
+sleep(90)
+gotoifunder($curhitslvl$,#healat#,[eat])
+setfightmode(#fmode#)
+attacknpcbyid(#npcid#;#npcbyid#)
+gotoifincombat([cbwait])
+wait(600)
+goto([main])
+
+[cbwait]
+wait(100)
+gotoifincombat([cbwait])
+goto([main])
+
+[eat]
+useitem(#foodid#)
+wait(400)
+gotoifunder($curhitslvl$,#healat#,[eat])
+goto([main])
